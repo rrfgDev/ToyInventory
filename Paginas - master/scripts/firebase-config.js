@@ -10,38 +10,3 @@
 };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
-  // Referência para o banco de dados do Firebase
-  const database = firebase.database();
-
-  // Lidar com o envio do formulário de inserção
-  const form = document.getElementById("item-form");
-  form.addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    // Obter os valores do formulário
-    const id = document.getElementById("id").value;
-    const nome = document.getElementById("nome").value;
-    const marca = document.getElementById("marca").value;
-    const quantidade = document.getElementById("quantidade").value;
-    const estado = document.getElementById("estado").value;
-
-    // Criar um novo objeto de item
-    const newItem = {
-      id: id,
-      nome: nome,
-      marca: marca,
-      quantidade: quantidade,
-      estado: estado
-    };
-
-    // Inserir o item no banco de dados
-    database.ref("itens").push(newItem)
-      .then(() => {
-        // Limpar os campos do formulário após a inserção
-        form.reset();
-      })
-      .catch((error) => {
-        console.log("Erro ao inserir item:", error);
-      });
-  });
